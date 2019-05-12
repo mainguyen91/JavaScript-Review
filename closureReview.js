@@ -1,6 +1,7 @@
-var callFriend = function(){
+var callFriend = function () {
   var friend = 'Jake';
-  function callF(number){
+
+  function callF(number) {
     return 'Calling ' + friend + ' at ' + number;
   }
   return callF;
@@ -9,8 +10,9 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function. 
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //code here
-
+//code here
+var callJake = callFriend();
+callJake('435-215-9248');
 
 
 /*
@@ -20,3 +22,25 @@ Write a function that accepts a function as it's first argument and returns a ne
 Once completed, add a second arguments that allows the function to be executed N number of times. After the function has been called N number of times, console.log('STAHHP');
 
 */
+function one(two) {
+  return function three() {
+    two()
+  }
+}
+
+function one(two, N) {
+  var count = 0;
+  return function () {
+    while (count < N) {
+      two();
+      count++
+    }
+    console.log('STAHHP')
+  }
+}
+
+function add() {
+  console.log('hello');
+}
+let closureVariable = one(add, 10);
+closureVariable();
