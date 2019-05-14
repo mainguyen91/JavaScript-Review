@@ -50,7 +50,6 @@ let random = dog.eat(dog.food);
 alert(dog.name.concat(" ate ").concat(random));
 
 //At this point, if we wanted to add something to every istance of person could we?
-
 //Yes or no? and why or why not?
 //We cannot. Cannot run prototype method on Person. 
 //The objects are created under a general class, they do not have their own class.
