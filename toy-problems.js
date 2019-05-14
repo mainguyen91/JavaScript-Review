@@ -43,39 +43,40 @@ function flatten(inputArray) {
 Given an array [a1, a2, ..., aN, b1, b2, ..., bN, c1, c2, ..., cN] convert it to [a1, b1, c1, a2, b2, c2, ..., aN, bN, cN]
 
 */
-function tripleArray(ABCs123s) {
-    var As = [];
-    var Bs = [];
-    var Cs = [];
-    for (var i = 0; i < ABCs123s.length / 3; i++) {
-        As.push(ABCs123s[i]);
-    };
-    for (var i = ABCs123s.length / 3; i < ABCs123s.length * 2 / 3; i++) {
-        Bs.push(ABCs123s[i]);
-    };
-    for (var i = ABCs123s.length * 2 / 3; i < ABCs123s.length; i++) {
-        Cs.push(ABCs123s[i]);
-    };
+var order = function (arr) {
+    var obj = {};
+    obj.length = 0;
+    for (var i = 0; i < arr.length; i++) {
+        var index = arr[i].slice(1);
+        if (obj[index]) {
+            obj[index].push(arr[i]);
+        } else {
+            obj[index] = [arr[i]];
+            obj.length++;
+        }
+    }
 
-    var reOrder = [];
-    for (var i = 0; i < As.length; i++) {
-        reOrder.push(As[i], Bs[i], Cs[i]);
-    };
-    return reOrder;
+    var newArr = [];
+    for (var i = 1; i < obj.length + 1; i++) {
+        newArr = newArr.concat(obj[i]);
+    }
+
+    return newArr;
 }
 
+var arr = ['a1', 'a2', 'b1', 'b2', 'c1', 'c2']
+order(arr)
 /*
 
 There is an array of non-negative integers. A second array is formed by shuffling the elements of the first array and deleting a random element. Given these two arrays, find which element is missing in the second array.
 
 */
-function findMissing(origArray, shuffArray) {
-    for (var i = 0; i < origArray.length; i++) {
-        if (shuffArray.indexOf(origArray[i]) === -1) {
-            return origArray[i];
-        }
-    };
-}
+let origArray = [1, 2, 3, 4, 5]
+let shuffArray = [2, 3]
+
+var findMissing = origArray.filter(item => shuffArray.indexOf(item) === -1)
+
+console.log(findMissing)
 
 
 /*
@@ -133,7 +134,7 @@ multiples();
 Remove duplicate characters in a given string keeping only the first occurrences. For example, if the input is ‘tree traversal’ the output will be "tre avsl".
 
 */
-function removeDupChars(str) {
+function removeDup(str) {
     var chars = str.split('');
     for (var i = 0; i < chars.length; i++) {
         if (chars.indexOf(chars[i]) !== i) {
